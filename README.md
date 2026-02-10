@@ -24,13 +24,19 @@ A recruitment API built with **Express**, **Prisma**, **PostgreSQL**, and **Zod*
 To spin up the entire stack (Frontend, Backend, Database) with a single command for a quick view:
 
 1.  Make sure you have [Docker](https://www.docker.com/) installed.
-2.  Run the following command in the root directory:
+2.  Create a `.env` file in the root directory:
+
+    ```env
+    OPENAI_API_KEY="your_openai_api_key_here"
+    ```
+
+3.  Run the following command in the root directory:
 
     ```bash
     docker-compose up --build
     ```
 
-3.  Access the application:
+4.  Access the application:
     - **Frontend**: [http://localhost:3001](http://localhost:3001)
     - **Backend API**: [http://localhost:3000](http://localhost:3000)
 
