@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Candidate {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Basic Info
+  firstName String
+  lastName  String
+  email     String  @unique
+  phone     String?
+
+  // Mandatory Qualifications
+  age                          Int
+  hasValidDriversLicense       Boolean
+  hasCleanDrivingRecord        Boolean
+  passesBackgroundScreening    Boolean
+  passesDrugScreening          Boolean
+  canLiftUpTo150Lbs            Boolean
+  hasWeekendAvailability       Boolean
+  hasLongShiftAvailability     Boolean
+
+  // Preferred Qualifications
+  hasDeliveryExperience        Boolean @default(false)
+  hasCourierExperience         Boolean @default(false)
+  hasTimeManagementSkills      Boolean @default(false)
+  hasOrganizationalSkills      Boolean @default(false)
+  canWorkIndependently         Boolean @default(false)
+
+  // LLM Evaluation Results (submitted by LLM)
+  isQualified                  Boolean?
+  matchScore                   Int?
+  mandatoryBreakdown           Json?     // LLM's breakdown of mandatory qualifications
+  preferredBreakdown           Json?     // LLM's breakdown of preferred qualifications
+  reasoning                    String?   // LLM's reasoning for the decision
+  evaluatedAt                  DateTime? // When the LLM made the decision
+  evaluatedBy                  String?   // Which LLM model made the decision
+
+  @@map("candidates")
+}
