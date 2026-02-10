@@ -33,7 +33,7 @@ To spin up the entire stack (Frontend, Backend, Database) with a single command 
 3.  Run the following command in the root directory:
 
     ```bash
-    docker-compose up --build
+    docker compose up --build
     ```
 
 4.  Access the application:
@@ -58,7 +58,7 @@ To spin up the entire stack (Frontend, Backend, Database) with a single command 
 2. **Start PostgreSQL** (using Docker):
 
    ```bash
-   docker-compose -f docker-compose.dev.yml up -d
+   docker compose -f docker-compose.dev.yml up -d
    ```
 
 3. **Configure environment:**
